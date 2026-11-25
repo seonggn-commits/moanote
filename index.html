@@ -45,7 +45,7 @@
     // 누르지 않아도 한 번 열어 본다(막는 브라우저에서는 단추를 누르면 된다)
     setTimeout(function () { location.href = app }, 300)
   } else {
-    document.getElementById('invite').className = 'none'
+    location.replace('home.html'); document.getElementById('invite').className = 'none'
     document.getElementById('empty').className = ''
   }
 </script>

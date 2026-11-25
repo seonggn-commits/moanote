@@ -1,0 +1,10 @@
+:root { color-scheme: light dark; --bg: #faf8ff; --fg: #1a1b21; --sub: #44464f; --pri: #455e91; --box: #eeedf4; }
+@media (prefers-color-scheme: dark) { :root { --bg: #121318; --fg: #e3e2e9; --sub: #c5c6d0; --pri: #aec6ff; --box: #1e1f25; } }
+body { margin: 0; padding: 48px 20px; background: var(--bg); color: var(--fg); font: 16px/1.7 system-ui, "Noto Sans KR", sans-serif; }
+main { max-width: 680px; margin: 0 auto; }
+h1 { font-size: 30px; font-weight: 500; margin: 0 0 8px; }
+h2 { font-size: 19px; font-weight: 600; margin: 32px 0 8px; }
+p, li { color: var(--sub); }
+a { color: var(--pri); }
+.box { padding: 16px 20px; border-radius: 16px; background: var(--box); }
+footer { margin-top: 40px; font-size: 14px; }
