@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>모아노트 초대</title>
+<style>
+  :root { color-scheme: light dark; --bg: #faf8ff; --fg: #1a1b21; --sub: #44464f; --pri: #455e91; --on: #fff; --box: #eeedf4; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #121318; --fg: #e3e2e9; --sub: #c5c6d0; --pri: #aec6ff; --on: #122f60; --box: #1e1f25; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100dvh; display: grid; place-items: center; padding: 24px 16px; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, "Noto Sans KR", sans-serif; }
+  main { width: 100%; max-width: 420px; text-align: center; }
+  h1 { font-size: 24px; font-weight: 500; margin: 0 0 8px; }
+  p { margin: 0 0 24px; color: var(--sub); }
+  a.open { display: block; padding: 16px 24px; border-radius: 999px; background: var(--pri); color: var(--on); font-weight: 600; text-decoration: none; }
+  .steps { margin-top: 32px; padding: 16px 20px; border-radius: 16px; background: var(--box); text-align: left; font-size: 14px; color: var(--sub); }
+  .steps b { color: var(--fg); }
+  .none { display: none; }
+</style>
+</head>
+<body>
+<main>
+  <div id="invite">
+    <h1>모아노트 문서에 초대받았습니다</h1>
+    <p>아래 단추를 누르면 모아노트 앱에서 문서가 열립니다.</p>
+    <a class="open" id="open" href="#">모아노트에서 열기</a>
+    <div class="steps">
+      <b>앱이 열리지 않나요?</b><br>
+      모아노트가 설치돼 있어야 합니다. 설치한 뒤 이 화면으로 돌아와 단추를 다시 누르거나, 앱의 보관함 → <b>참여</b>에 이 주소를 붙여 넣으세요.
+    </div>
+  </div>
+  <div id="empty" class="none">
+    <h1>모아노트</h1>
+    <p>초대 주소가 올바르지 않습니다. 보낸 사람에게 주소를 다시 받아 주세요.</p>
+  </div>
+</main>
+<script>
+  // 초대 정보는 주소의 # 뒤에만 있고, 서버로는 전송되지 않는다. 이 페이지는 그것을 앱 주소로 바꿔 줄 뿐이다.
+  var h = location.hash
+  if (/^#\/d\/[a-z]+\/[\w-]+\?k=[\w-]+$/.test(h)) {
+    var app = 'moanote://open/' + h
+    document.getElementById('open').href = app
+    // 누르지 않아도 한 번 열어 본다(막는 브라우저에서는 단추를 누르면 된다)
+    setTimeout(function () { location.href = app }, 300)
+  } else {
+    document.getElementById('invite').className = 'none'
+    document.getElementById('empty').className = ''
+  }
+</script>
+</body>
+</html>
